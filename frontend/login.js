@@ -14,7 +14,7 @@ async function loginUser() {
     try {
 
         const response = await fetch(
-            "http://localhost:8080/api/auth/login",
+            "https://ridenow-backend-1ty9.onrender.com/api/auth/login",
             {
                 method: "POST",
 

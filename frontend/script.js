@@ -409,7 +409,7 @@ async function searchLocations(query) {
         return [];
     }
 
-    const url = "http://localhost:8080/api/location/search?q=" +
+    const url = "https://ridenow-backend-1ty9.onrender.com/api/location/search?q=" +
         encodeURIComponent(query.trim());
 
     console.log("Autocomplete request:", url);
@@ -824,7 +824,7 @@ async function calculateRoute() {
     try {
 
         const url =
-            "http://localhost:8080/api/rides/route" +
+            "https://ridenow-backend-1ty9.onrender.com/api/rides/route" +
             "?pickupLatitude=" +
             encodeURIComponent(
                 pickupCoordinates.latitude
@@ -1123,7 +1123,7 @@ async function bookRide() {
 
         const response =
             await fetch(
-                "http://localhost:8080/api/rides/book",
+                "https://ridenow-backend-1ty9.onrender.com/api/rides/book",
                 {
                     method: "POST",
 
@@ -1280,7 +1280,7 @@ async function loadDriverLocation(driverId) {
 
     try {
         const response = await fetch(
-            `http://localhost:8080/api/drivers/${driverId}/location`,
+            `https://ridenow-backend-1ty9.onrender.com/api/drivers/${driverId}/location`,
             {
                 method: "GET",
                 headers: {
@@ -1387,7 +1387,7 @@ async function loadCustomerRides() {
     try {
 
         const response = await fetch(
-            "http://localhost:8080/api/rides/history",
+            "https://ridenow-backend-1ty9.onrender.com/api/rides/history",
             {
                 method: "GET",
                 headers: {
@@ -1638,7 +1638,7 @@ async function loadCustomerRideHistory() {
     try {
 
         const response = await fetch(
-            "http://localhost:8080/api/rides/history",
+            "https://ridenow-backend-1ty9.onrender.com/api/rides/history",
             {
                 method: "GET",
                 headers: {
@@ -1938,7 +1938,7 @@ async function getRideRating(rideId) {
 
     try {
         const response = await fetch(
-            `http://localhost:8080/api/ratings/rides/${rideId}`,
+            `https://ridenow-backend-1ty9.onrender.com/api/ratings/rides/${rideId}`,
             {
                 method: "GET",
                 headers: {
@@ -1984,7 +1984,7 @@ async function loadCustomerRideHistory() {
 
     try {
         const response = await fetch(
-            "http://localhost:8080/api/rides/history",
+            "https://ridenow-backend-1ty9.onrender.com/api/rides/history",
             {
                 method: "GET",
                 headers: {
@@ -2170,7 +2170,7 @@ async function submitRideRating(rideId) {
 
     try {
         const response = await fetch(
-            `http://localhost:8080/api/ratings/rides/${rideId}`,
+            `https://ridenow-backend-1ty9.onrender.com/api/ratings/rides/${rideId}`,
             {
                 method: "POST",
                 headers: {
@@ -2222,3 +2222,5 @@ function escapeHTML(value) {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
 }
+
+

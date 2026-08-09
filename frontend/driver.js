@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "https://ridenow-backend-1ty9.onrender.com";
 
 let driverToken = localStorage.getItem("token");
 
@@ -1152,3 +1152,4 @@ document.addEventListener(
 
     }
 );
+
