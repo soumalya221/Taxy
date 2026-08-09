@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>RideNow - Admin Management</title>
+
+    <link
+        rel="stylesheet"
+        href="admin-management.css"
+    >
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
+
+<header class="admin-header">
+
+    <div class="admin-logo">
+
+        <i class="fa-solid fa-taxi"></i>
+
+        <span>RideNow</span>
+
+        <small>ADMIN</small>
+
+    </div>
+
+
+    <nav class="admin-nav">
+
+        <a href="admin.html">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            Dashboard
+
+        </a>
+
+
+        <a href="admin-rides.html">
+
+            <i class="fa-solid fa-route"></i>
+
+            Rides
+
+        </a>
+
+
+        <a
+            href="admin-management.html"
+            class="active"
+        >
+
+            <i class="fa-solid fa-users-gear"></i>
+
+            Management
+
+        </a>
+
+    </nav>
+
+
+    <div class="admin-user">
+
+        <span id="adminName">
+            Administrator
+        </span>
+
+
+        <button
+            id="logoutBtn"
+            class="logout-btn"
+            type="button"
+        >
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+     ===================================================== -->
+
+<main class="admin-container">
+
+
+    <!-- =================================================
+         PAGE HEADER
+         ================================================= -->
+
+    <section class="page-header">
+
+        <div>
+
+            <h1>
+                Management
+            </h1>
+
+            <p>
+                Manage RideNow customers, drivers and vehicles.
+            </p>
+
+        </div>
+
+
+        <button
+            id="refreshBtn"
+            class="refresh-btn"
+            type="button"
+        >
+
+            <i class="fa-solid fa-rotate"></i>
+
+            Refresh
+
+        </button>
+
+    </section>
+
+
+
+    <!-- =================================================
+         ERROR
+         ================================================= -->
+
+    <div
+        id="errorMessage"
+        class="error-message"
+        style="display: none;"
+    >
+    </div>
+
+
+
+    <!-- =================================================
+         MANAGEMENT TABS
+         ================================================= -->
+
+    <section class="management-section">
+
+
+        <div class="management-tabs">
+
+
+            <button
+                class="management-tab active"
+                data-section="customers"
+                type="button"
+            >
+
+                <i class="fa-solid fa-users"></i>
+
+                Customers
+
+            </button>
+
+
+            <button
+                class="management-tab"
+                data-section="drivers"
+                type="button"
+            >
+
+                <i class="fa-solid fa-id-card"></i>
+
+                Drivers
+
+            </button>
+
+
+            <button
+                class="management-tab"
+                data-section="vehicles"
+                type="button"
+            >
+
+                <i class="fa-solid fa-car"></i>
+
+                Vehicles
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- =============================================
+             CUSTOMERS
+             ============================================= -->
+
+        <div
+            id="customersSection"
+            class="management-content active"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Customers
+                    </h2>
+
+                    <p>
+                        Registered RideNow customers.
+                    </p>
+
+                </div>
+
+
+                <span
+                    id="customerCount"
+                    class="record-count"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Name</th>
+
+                            <th>Email</th>
+
+                            <th>Phone</th>
+
+                            <th>Role</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="customersTableBody">
+
+                        <tr>
+
+                            <td
+                                colspan="5"
+                                class="table-loading"
+                            >
+
+                                <i
+                                    class="fa-solid fa-spinner fa-spin"
+                                ></i>
+
+                                Loading customers...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =============================================
+             DRIVERS
+             ============================================= -->
+
+        <div
+            id="driversSection"
+            class="management-content"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Drivers
+                    </h2>
+
+                    <p>
+                        Registered RideNow drivers and their current status.
+                    </p>
+
+                </div>
+
+
+                <span
+                    id="driverCount"
+                    class="record-count"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Driver</th>
+
+                            <th>Email</th>
+
+                            <th>Phone</th>
+
+                            <th>License</th>
+
+                            <th>Experience</th>
+
+                            <th>Rating</th>
+
+                            <th>Status</th>
+
+                            <th>Location</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="driversTableBody">
+
+                        <tr>
+
+                            <td
+                                colspan="9"
+                                class="table-loading"
+                            >
+
+                                <i
+                                    class="fa-solid fa-spinner fa-spin"
+                                ></i>
+
+                                Loading drivers...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =============================================
+             VEHICLES
+             ============================================= -->
+
+        <div
+            id="vehiclesSection"
+            class="management-content"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Vehicles
+                    </h2>
+
+                    <p>
+                        Registered vehicles and their assigned drivers.
+                    </p>
+
+                </div>
+
+
+                <span
+                    id="vehicleCount"
+                    class="record-count"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Vehicle Number</th>
+
+                            <th>Type</th>
+
+                            <th>Brand</th>
+
+                            <th>Model</th>
+
+                            <th>Color</th>
+
+                            <th>Seats</th>
+
+                            <th>Status</th>
+
+                            <th>Driver</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="vehiclesTableBody">
+
+                        <tr>
+
+                            <td
+                                colspan="9"
+                                class="table-loading"
+                            >
+
+                                <i
+                                    class="fa-solid fa-spinner fa-spin"
+                                ></i>
+
+                                Loading vehicles...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<script src="admin-management.js"></script>
+
+</body>
+
+</html>

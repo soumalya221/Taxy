@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RideNow - Taxi Booking</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Leaflet CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        <i class="fa-solid fa-taxi"></i>
+        RideNow
+    </div>
+
+    <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="vehicles.html">Vehicles</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="auth-buttons">
+
+        <span id="welcomeUser"></span>
+
+        <button
+            class="signup-btn"
+            onclick="window.location.href='signup.html'">
+            Sign Up
+        </button>
+
+        <button
+            class="login-btn"
+            onclick="window.location.href='login.html'">
+            Login
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Book Your Taxi <br>
+            Anytime, Anywhere
+        </h1>
+
+        <p>
+            Affordable rides with professional drivers.
+        </p>
+
+    </div>
+
+
+    <!-- ================= BOOKING BOX ================= -->
+
+    <div class="booking-box">
+
+        <h2>
+            <i class="fa-solid fa-location-dot"></i>
+            Book a Ride
+        </h2>
+
+        <!-- Pickup -->
+
+        <div class="location-input">
+
+            <label for="pickupLocation">
+                Pickup Location
+            </label>
+
+            <input
+                type="text"
+                id="pickupLocation"
+                placeholder="Enter pickup location"
+                autocomplete="off"
+            >
+
+            <div id="pickupSuggestions" class="location-suggestions"
+                 role="listbox" aria-label="Pickup suggestions"></div>
+
+        </div>
+
+
+        <!-- Destination -->
+
+        <div class="location-input">
+
+            <label for="dropLocation">
+                Destination
+            </label>
+
+            <input
+                type="text"
+                id="dropLocation"
+                placeholder="Enter destination"
+                autocomplete="off"
+            >
+
+            <div id="dropSuggestions" class="location-suggestions"
+                 role="listbox" aria-label="Destination suggestions"></div>
+
+        </div>
+
+
+        <!-- Vehicle Type -->
+
+        <fieldset class="vehicle-selector">
+            <legend>Select vehicle</legend>
+
+            <label class="vehicle-option">
+                <input type="radio" name="vehicleType" value="HATCHBACK">
+                <span><strong>Hatchback</strong><small>₹12/km</small></span>
+            </label>
+
+            <label class="vehicle-option">
+                <input type="radio" name="vehicleType" value="SEDAN">
+                <span><strong>Sedan</strong><small>₹15/km</small></span>
+            </label>
+
+            <label class="vehicle-option">
+                <input type="radio" name="vehicleType" value="SUV">
+                <span><strong>SUV</strong><small>₹20/km</small></span>
+            </label>
+        </fieldset>
+
+        <p id="vehicleFareEstimate" class="vehicle-fare-estimate">
+            Select a vehicle to view its estimated fare.
+        </p>
+
+
+        <!-- Map -->
+
+        <div id="map"></div>
+
+
+        <!-- Coordinates -->
+
+        <div class="coordinates">
+
+            <div>
+                <small>Pickup</small>
+                <span id="pickupCoordinates">
+                    Not selected
+                </span>
+            </div>
+
+            <div>
+                <small>Destination</small>
+                <span id="dropCoordinates">
+                    Not selected
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- Book Button -->
+
+        <button
+            id="bookRideBtn"
+            class="book-btn"
+            type="button">
+
+            <i class="fa-solid fa-taxi"></i>
+            Book Ride
+
+        </button>
+
+
+        <!-- Ride Result -->
+
+        <div
+            id="rideResult"
+            class="ride-result"
+            style="display: none;">
+
+            <h3>Ride Details</h3>
+
+            <p>
+                Distance:
+                <strong id="rideDistance">-</strong>
+            </p>
+
+            <p>
+                Duration:
+                <strong id="rideDuration">-</strong>
+            </p>
+
+            <p>
+                Fare:
+                <strong id="rideFare">-</strong>
+            </p>
+
+            <p>
+                Status:
+                <strong id="rideStatus">-</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CUSTOMER RIDE TRACKING ================= -->
+
+<section class="customer-rides-section">
+
+    <h2>
+        <i class="fa-solid fa-route"></i>
+        My Current Ride
+    </h2>
+
+    <div
+        id="currentRideCard"
+        class="current-ride-card">
+
+        <p class="no-ride">
+            No active ride.
+        </p>
+
+    </div>
+
+    <button
+        id="refreshRideBtn"
+        class="refresh-ride-btn"
+        type="button">
+
+        <i class="fa-solid fa-rotate"></i>
+        Refresh Ride Status
+
+    </button>
+
+</section>
+
+
+<!-- ================= VEHICLES ================= -->
+
+<section class="vehicles-section">
+
+    <h2>Our Vehicles</h2>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <i class="fa-solid fa-car"></i>
+
+            <h3>Sedan</h3>
+
+            <p>
+                Comfort ride for city travel.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <i class="fa-solid fa-truck"></i>
+
+            <h3>SUV</h3>
+
+            <p>
+                Perfect for families and groups.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <i class="fa-solid fa-taxi"></i>
+
+            <h3>Hatchback</h3>
+
+            <p>
+                Affordable everyday rides.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features-section">
+
+    <h2>Why Choose Us?</h2>
+
+    <div class="features">
+
+        <div class="feature">
+
+            <i class="fa-solid fa-shield"></i>
+
+            <h3>Safe Rides</h3>
+
+        </div>
+
+
+        <div class="feature">
+
+            <i class="fa-solid fa-wallet"></i>
+
+            <h3>Best Price</h3>
+
+        </div>
+
+
+        <div class="feature">
+
+            <i class="fa-solid fa-headset"></i>
+
+            <h3>24/7 Support</h3>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= LEAFLET JS ================= -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
+<!-- Main JavaScript -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
+

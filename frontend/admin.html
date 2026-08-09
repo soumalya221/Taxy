@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>RideNow - Admin Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="admin.css"
+    >
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="admin-header">
+
+        <div class="admin-logo">
+
+            <i class="fa-solid fa-taxi"></i>
+
+            RideNow
+
+            <span>
+                Admin
+            </span>
+
+        </div>
+
+
+        <div class="admin-user">
+
+            <span id="adminName">
+                Admin
+            </span>
+
+            <button
+                id="logoutBtn"
+                class="logout-btn"
+                type="button"
+            >
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main class="admin-container">
+
+
+        <!-- =================================================
+             WELCOME
+             ================================================= -->
+
+        <section class="admin-welcome">
+
+            <div>
+
+                <h1>
+                    Admin Dashboard
+                </h1>
+
+                <p>
+                    Monitor RideNow operations and ride activity.
+                </p>
+
+            </div>
+
+
+            <button
+                id="refreshBtn"
+                class="refresh-btn"
+                type="button"
+            >
+
+                <i class="fa-solid fa-rotate"></i>
+
+                Refresh
+
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             ERROR
+             ================================================= -->
+
+        <div
+            id="errorMessage"
+            class="error-message"
+            style="display: none;"
+        >
+        </div>
+
+
+        <!-- =================================================
+             STATISTICS
+             ================================================= -->
+
+        <section class="stats-grid">
+
+
+            <!-- CUSTOMERS -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon customer-icon">
+
+                    <i class="fa-solid fa-users"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Customers
+                    </span>
+
+                    <strong id="totalCustomers">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- DRIVERS -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon driver-icon">
+
+                    <i class="fa-solid fa-id-card"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Drivers
+                    </span>
+
+                    <strong id="totalDrivers">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- VEHICLES -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon vehicle-icon">
+
+                    <i class="fa-solid fa-car"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Vehicles
+                    </span>
+
+                    <strong id="totalVehicles">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIDES -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon ride-icon">
+
+                    <i class="fa-solid fa-route"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Rides
+                    </span>
+
+                    <strong id="totalRides">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RIDE STATUS
+             ================================================= -->
+
+        <section class="ride-status-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Ride Status
+                    </h2>
+
+                    <p>
+                        Current ride distribution
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="ride-status-grid">
+
+
+                <!-- REQUESTED -->
+
+                <div class="status-card requested">
+
+                    <div class="status-icon">
+
+                        <i class="fa-solid fa-clock"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Requested
+                        </span>
+
+                        <strong id="requestedRides">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACCEPTED -->
+
+                <div class="status-card accepted">
+
+                    <div class="status-icon">
+
+                        <i class="fa-solid fa-check"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Accepted
+                        </span>
+
+                        <strong id="acceptedRides">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STARTED -->
+
+                <div class="status-card started">
+
+                    <div class="status-icon">
+
+                        <i class="fa-solid fa-play"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Started
+                        </span>
+
+                        <strong id="startedRides">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- COMPLETED -->
+
+                <div class="status-card completed">
+
+                    <div class="status-icon">
+
+                        <i class="fa-solid fa-flag-checkered"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Completed
+                        </span>
+
+                        <strong id="completedRides">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SYSTEM INFORMATION
+             ================================================= -->
+
+        <section class="system-card">
+
+            <div class="system-icon">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Admin Access
+                </h3>
+
+                <p>
+                    You are viewing protected RideNow
+                    administrative information.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>

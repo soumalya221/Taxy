@@ -1,0 +1,694 @@
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f4f6f9;
+
+    color: #111827;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.admin-header {
+    height: 76px;
+
+    padding: 0 6%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 2px 10px
+        rgba(0, 0, 0, 0.04);
+}
+
+
+.admin-logo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: #f59e0b;
+
+    font-size: 28px;
+
+    font-weight: 800;
+}
+
+
+.admin-logo i {
+    font-size: 28px;
+}
+
+
+.admin-logo span {
+    margin-left: 5px;
+
+    padding: 4px 9px;
+
+    border-radius: 20px;
+
+    background: #fff7ed;
+
+    color: #d97706;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   ADMIN USER
+   ========================================================= */
+
+.admin-user {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+}
+
+
+#adminName {
+    color: #374151;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+.logout-btn {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 10px 16px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #111827;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease;
+}
+
+
+.logout-btn:hover {
+    background: #374151;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.admin-container {
+    width: min(
+        1150px,
+        92%
+    );
+
+    margin: 0 auto;
+
+    padding: 42px 0 60px;
+}
+
+
+/* =========================================================
+   WELCOME
+   ========================================================= */
+
+.admin-welcome {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+
+.admin-welcome h1 {
+    margin-bottom: 7px;
+
+    color: #111827;
+
+    font-size: 32px;
+
+    font-weight: 800;
+}
+
+
+.admin-welcome p {
+    color: #6b7280;
+
+    font-size: 15px;
+}
+
+
+.refresh-btn {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 11px 17px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #f59e0b;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.refresh-btn:hover {
+    background: #d97706;
+
+    transform: translateY(-1px);
+}
+
+
+.refresh-btn.loading {
+    opacity: 0.7;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   ERROR MESSAGE
+   ========================================================= */
+
+.error-message {
+    margin-bottom: 22px;
+
+    padding: 14px 16px;
+
+    border: 1px solid #fecaca;
+
+    border-radius: 10px;
+
+    background: #fef2f2;
+
+    color: #b91c1c;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   STATISTICS GRID
+   ========================================================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-bottom: 30px;
+}
+
+
+.stat-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    min-height: 130px;
+
+    padding: 22px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.05);
+}
+
+
+.stat-icon {
+    width: 52px;
+
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #fff7ed;
+
+    color: #f59e0b;
+
+    font-size: 21px;
+}
+
+
+.stat-card span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #6b7280;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+}
+
+
+.stat-card strong {
+    display: block;
+
+    color: #111827;
+
+    font-size: 30px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   RIDE STATUS SECTION
+   ========================================================= */
+
+.ride-status-section {
+    padding: 28px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.05);
+
+    margin-bottom: 25px;
+}
+
+
+.section-heading {
+    margin-bottom: 22px;
+}
+
+
+.section-heading h2 {
+    margin-bottom: 5px;
+
+    color: #111827;
+
+    font-size: 21px;
+}
+
+
+.section-heading p {
+    color: #6b7280;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   RIDE STATUS GRID
+   ========================================================= */
+
+.ride-status-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+
+.status-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 18px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 11px;
+
+    background: #f9fafb;
+}
+
+
+.status-icon {
+    width: 42px;
+
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 16px;
+}
+
+
+.status-card span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #6b7280;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+.status-card strong {
+    color: #111827;
+
+    font-size: 24px;
+}
+
+
+/* =========================================================
+   STATUS TYPES
+   ========================================================= */
+
+.status-card.requested {
+    border-color: #fde68a;
+}
+
+.status-card.requested .status-icon {
+    background: #fef3c7;
+
+    color: #b45309;
+}
+
+
+.status-card.accepted {
+    border-color: #bfdbfe;
+}
+
+.status-card.accepted .status-icon {
+    background: #dbeafe;
+
+    color: #2563eb;
+}
+
+
+.status-card.started {
+    border-color: #ddd6fe;
+}
+
+.status-card.started .status-icon {
+    background: #ede9fe;
+
+    color: #7c3aed;
+}
+
+
+.status-card.completed {
+    border-color: #bbf7d0;
+}
+
+.status-card.completed .status-icon {
+    background: #dcfce7;
+
+    color: #15803d;
+}
+
+
+/* =========================================================
+   SYSTEM CARD
+   ========================================================= */
+
+.system-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 20px 24px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.05);
+}
+
+
+.system-icon {
+    width: 48px;
+
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 20px;
+}
+
+
+.system-card h3 {
+    margin-bottom: 5px;
+
+    color: #111827;
+
+    font-size: 15px;
+}
+
+
+.system-card p {
+    color: #6b7280;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .ride-status-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .admin-header {
+        height: auto;
+
+        min-height: 70px;
+
+        padding: 12px 4%;
+
+        gap: 12px;
+    }
+
+
+    .admin-logo {
+        font-size: 21px;
+    }
+
+
+    .admin-logo i {
+        font-size: 21px;
+    }
+
+
+    .admin-logo span {
+        display: none;
+    }
+
+
+    .admin-user {
+        gap: 8px;
+    }
+
+
+    #adminName {
+        display: none;
+    }
+
+
+    .logout-btn {
+        padding: 9px 12px;
+    }
+
+
+    .admin-container {
+        width: 92%;
+
+        padding-top: 28px;
+    }
+
+
+    .admin-welcome {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .admin-welcome h1 {
+        font-size: 27px;
+    }
+
+
+    .refresh-btn {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .ride-status-section {
+        padding: 20px;
+    }
+
+
+    .ride-status-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .system-card {
+        align-items: flex-start;
+
+        padding: 18px;
+    }
+
+}

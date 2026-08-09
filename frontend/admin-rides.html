@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>RideNow - Manage Rides</title>
+
+    <link
+        rel="stylesheet"
+        href="admin-rides.css"
+    >
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
+
+<header class="admin-header">
+
+    <div class="admin-logo">
+
+        <i class="fa-solid fa-taxi"></i>
+
+        <span>RideNow</span>
+
+        <small>ADMIN</small>
+
+    </div>
+
+
+    <nav class="admin-nav">
+
+        <a href="admin.html">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            Dashboard
+
+        </a>
+
+
+        <a
+            href="admin-rides.html"
+            class="active"
+        >
+
+            <i class="fa-solid fa-route"></i>
+
+            Rides
+
+        </a>
+
+    </nav>
+
+
+    <div class="admin-user">
+
+        <span id="adminName">
+            Administrator
+        </span>
+
+
+        <button
+            id="logoutBtn"
+            class="logout-btn"
+            type="button"
+        >
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+     ===================================================== -->
+
+<main class="admin-container">
+
+
+    <!-- =================================================
+         PAGE HEADER
+         ================================================= -->
+
+    <section class="page-header">
+
+        <div>
+
+            <h1>
+                Manage Rides
+            </h1>
+
+            <p>
+                View and monitor all RideNow rides.
+            </p>
+
+        </div>
+
+
+        <button
+            id="refreshBtn"
+            class="refresh-btn"
+            type="button"
+        >
+
+            <i class="fa-solid fa-rotate"></i>
+
+            Refresh
+
+        </button>
+
+    </section>
+
+
+
+    <!-- =================================================
+         ERROR
+         ================================================= -->
+
+    <div
+        id="errorMessage"
+        class="error-message"
+        style="display: none;"
+    >
+    </div>
+
+
+
+    <!-- =================================================
+         FILTERS
+         ================================================= -->
+
+    <section class="filter-section">
+
+        <div class="filter-title">
+
+            <i class="fa-solid fa-filter"></i>
+
+            <span>
+                Filter by Status
+            </span>
+
+        </div>
+
+
+        <div class="filter-buttons">
+
+            <button
+                class="filter-btn active"
+                data-status="ALL"
+                type="button"
+            >
+
+                All
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-status="REQUESTED"
+                type="button"
+            >
+
+                Requested
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-status="ACCEPTED"
+                type="button"
+            >
+
+                Accepted
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-status="STARTED"
+                type="button"
+            >
+
+                Started
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-status="COMPLETED"
+                type="button"
+            >
+
+                Completed
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         RIDE COUNT
+         ================================================= -->
+
+    <div class="ride-summary">
+
+        <span>
+            Showing
+        </span>
+
+        <strong id="rideCount">
+            0
+        </strong>
+
+        <span>
+            rides
+        </span>
+
+    </div>
+
+
+
+    <!-- =================================================
+         RIDES
+         ================================================= -->
+
+    <section id="ridesContainer" class="rides-container">
+
+        <div class="loading-state">
+
+            <i class="fa-solid fa-spinner fa-spin"></i>
+
+            Loading rides...
+
+        </div>
+
+    </section>
+
+
+
+</main>
+
+
+
+<script src="admin-rides.js"></script>
+
+</body>
+
+</html>

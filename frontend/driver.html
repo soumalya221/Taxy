@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>RideNow - Driver Dashboard</title>
+
+    <link rel="stylesheet"
+          href="driver.css">
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="driver-header">
+
+        <div class="logo">
+            <i class="fa-solid fa-taxi"></i>
+            RideNow
+        </div>
+
+        <div class="driver-info">
+
+            <span id="driverName">
+                Driver
+            </span>
+
+            <button
+                id="logoutBtn"
+                class="logout-btn">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="dashboard">
+
+        <section class="welcome">
+
+            <h1>
+                Driver Dashboard
+            </h1>
+
+            <p>
+                Manage your rides and driver status.
+            </p>
+
+        </section>
+
+
+        <!-- ================= STATUS ================= -->
+
+        <section class="status-card">
+
+            <div>
+
+                <h3>
+                    Driver Status
+                </h3>
+
+                <span
+                    id="driverStatus"
+                    class="status offline">
+
+                    OFFLINE
+
+                </span>
+
+            </div>
+
+            <button
+                id="locationBtn"
+                class="location-btn">
+
+                <i class="fa-solid fa-location-crosshairs"></i>
+                Update Location
+
+            </button>
+
+        </section>
+
+
+        <!-- ================= VEHICLE ================= -->
+
+        <section class="vehicle-card">
+
+            <h2>
+                <i class="fa-solid fa-car"></i>
+                My Vehicle
+            </h2>
+
+            <div id="vehicleDetails">
+
+                <p>
+                    Vehicle information will appear here.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= RIDES ================= -->
+
+        <section class="rides-section">
+
+            <div class="section-title">
+
+                <h2>
+                    My Rides
+                </h2>
+
+                <button
+                    id="refreshBtn"
+                    class="refresh-btn">
+
+                    <i class="fa-solid fa-rotate"></i>
+                    Refresh
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="rideList"
+                class="ride-list">
+
+                <p class="loading">
+                    Loading rides...
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= SCRIPT ================= -->
+
+    <script src="driver.js?v=2"></script>
+
+</body>
+
+</html>
