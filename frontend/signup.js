@@ -1,43 +1,50 @@
-function signupUser(){
+async function signupUser() {
 
-    let name =
-        document.getElementById("name").value;
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const password = document.getElementById("password").value;
 
-    let email =
-        document.getElementById("email").value;
-
-    let password =
-        document.getElementById("password").value;
-
-    if(
-        name === "" ||
-        email === "" ||
-        password === ""
-    ){
-
+    if (name === "" || email === "" || phone === "" || password === "") {
         alert("Please fill all fields");
         return;
     }
 
-    localStorage.setItem(
-        "name",
-        name
-    );
+    try {
 
-    localStorage.setItem(
-        "email",
-        email
-    );
+        const response = await fetch(
+            "https://ridenow-backend-1ty9.onrender.com/api/auth/register",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    password: password
+                })
+            }
+        );
 
-    localStorage.setItem(
-        "password",
-        password
-    );
+        const data = await response.json();
 
-    alert(
-        "Account Created Successfully!"
-    );
+        console.log("Register response:", data);
 
-    window.location.href =
-        "login.html";
+        if (!response.ok) {
+            alert(data.message || "Registration failed");
+            return;
+        }
+
+        alert("Account Created Successfully!");
+
+        window.location.href = "login.html";
+
+    } catch (error) {
+
+        console.error("Registration error:", error);
+
+        alert("Unable to connect to backend.");
+    }
 }
