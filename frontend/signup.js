@@ -1,12 +1,34 @@
 async function signupUser() {
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const password = document.getElementById("password").value;
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const phoneInput = document.getElementById("phone");
+    const passwordInput = document.getElementById("password");
 
-    if (name === "" || email === "" || phone === "" || password === "") {
-        alert("Please fill all fields");
+    // Check that all fields exist
+    if (!nameInput || !emailInput || !phoneInput || !passwordInput) {
+        console.error("Signup form field is missing.");
+
+        alert(
+            "Signup form error: Name, Email, Phone and Password fields are required."
+        );
+
+        return;
+    }
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const phone = phoneInput.value.trim();
+    const password = passwordInput.value;
+
+    // Validate fields
+    if (
+        name === "" ||
+        email === "" ||
+        phone === "" ||
+        password === ""
+    ) {
+        alert("Please fill all fields.");
         return;
     }
 
@@ -16,9 +38,11 @@ async function signupUser() {
             "https://ridenow-backend-1ty9.onrender.com/api/auth/register",
             {
                 method: "POST",
+
                 headers: {
                     "Content-Type": "application/json"
                 },
+
                 body: JSON.stringify({
                     name: name,
                     email: email,
@@ -30,14 +54,26 @@ async function signupUser() {
 
         const data = await response.json();
 
-        console.log("Register response:", data);
+        console.log("Registration HTTP status:", response.status);
+        console.log("Registration response:", data);
 
+        // Registration failed
         if (!response.ok) {
-            alert(data.message || "Registration failed");
+
+            alert(
+                data.message ||
+                "Registration failed."
+            );
+
             return;
         }
 
+        // Registration successful
         alert("Account Created Successfully!");
+
+        // Do NOT store the password in localStorage
+        localStorage.setItem("name", name);
+        localStorage.setItem("email", email);
 
         window.location.href = "login.html";
 
@@ -45,6 +81,8 @@ async function signupUser() {
 
         console.error("Registration error:", error);
 
-        alert("Unable to connect to backend.");
+        alert(
+            "Unable to connect to the backend. Please try again."
+        );
     }
 }

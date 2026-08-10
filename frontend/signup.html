@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Sign Up - RideNow</title>
 
     <link rel="stylesheet" href="style.css">
@@ -21,22 +22,42 @@
                 Join RideNow and book your ride
             </p>
 
+            <!-- Full Name -->
             <input
                 type="text"
                 id="name"
-                placeholder="Full Name">
+                placeholder="Full Name"
+                required
+            >
 
+            <!-- Email -->
             <input
                 type="email"
                 id="email"
-                placeholder="Email Address">
+                placeholder="Email Address"
+                required
+            >
 
+            <!-- Phone -->
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Phone Number"
+                required
+            >
+
+            <!-- Password -->
             <input
                 type="password"
                 id="password"
-                placeholder="Password">
+                placeholder="Password"
+                required
+            >
 
-            <button onclick="signupUser()">
+            <!-- Signup Button -->
+            <button
+                type="button"
+                onclick="signupUser()">
                 Sign Up
             </button>
 
@@ -55,6 +76,7 @@
 
     </div>
 
+    <!-- Signup JavaScript -->
     <script src="signup.js"></script>
 
 </body>
